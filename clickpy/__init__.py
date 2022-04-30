@@ -16,6 +16,7 @@ __all__ = [
     "DEFAULT_STRATEGY",
     "BasicClickStrategy",
     "ClickStrategy",
+    "ClickStrategyNotFound",
     "NaturalClickStrategy",
     "generate_click_strategy",
 ]
@@ -92,7 +93,7 @@ def main(
         while True:
             click_strategy.click()
 
-    except ClickStrategyNotFound:
+    except (ClickStrategyNotFound, TypeError):
         typer.echo(f"Argument {click_type!r} is not a valid clicker type.", err=True)
         exit_code = 1
 
